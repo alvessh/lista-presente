@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Presentes Casamento</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 50px;
+    }
+
+    .list-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .category {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 18px;
+      position: relative;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.5);
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    label:hover {
+      color: #ffcd00;
+    }
+
+    .sr-only {
+      position: absolute;
+      left: -9999px;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Presentes Casamento</h1>
+  <div class="list-container">
+    <h2 class="category">Cama e Banho</h2>
+    <ul>
+      <li>
+        <input type="checkbox" id="travesseiro">
+        <label for="travesseiro">Travesseiro</label>
+      </li>
+      <li>
+        <input type="checkbox" id="jogo-lencol">
+        <label for="jogo-lencol">Jogo de lençol (cama king)</label>
+      </li>
+      <li>
+        <input type="checkbox" id="toalha">
+        <label for="toalha">Toalha (banho)</label>
+      </li>
+    </ul>
+    <h2 class="category">Cozinha</h2>
+    <ul>
+      <li>
+        <input type="checkbox" id="panelas">
+        <label for="panelas">Panelas</label>
+      </li>
+      <li>
+        <input type="checkbox" id="kit-facas">
+        <label for="kit-facas">Kit facas</label>
+      </li>
+      <li>
+        <input type="checkbox" id="mop">
+        <label for="mop">Mop</label>
+      </li>
+      <!-- Outros itens da lista de cozinha -->
+    </ul>
+    <h2 class="category">Eletrodomésticos</h2>
+    <ul>
+      <li>
+        <input type="checkbox" id="espelho-grande">
+        <label for="espelho-grande">Espelho grande</label>
+      </li>
+      <li>
+        <input type="checkbox" id="microondas">
+        <label for="microondas">Microondas</label>
+      </li>
+      <li>
+        <input type="checkbox" id="batedeira">
+        <label for="batedeira">Batedeira</label>
+      </li>
+      <!-- Outros
