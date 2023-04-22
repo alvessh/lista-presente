@@ -1,59 +1,62 @@
 import { useEffect, useState } from "react";
-import { selectList, updateList } from "./supabase";
+import { selectList, updateItem } from "./supabase";
+import ItemCard from "./components/ItemCard";
 
 function App() {
   const [list, setList] = useState([]);
-  const [isLoad, setLoad] = useState(false);
-
+  const [isLoaded, setLoaded] = useState(false);
   useEffect(() => {
     (async () => {
-      if (!isLoad) {
+      if (!isLoaded) {
         const result = await selectList();
         setList(result);
-        setLoad(true);
+        setLoaded(true);
       }
-    })()
+    })();
+  }, [isLoaded]);
 
-  }, [isLoad]);
+  async function handleConfirmItem(itemId) {
+    console.log("ItemId ->", itemId);
+    const item = list.find((item) => item.id === itemId);
 
-  async function handleCheckboxChange(itemId) {
-    const item = list.find(item => item.id === itemId);
-    const updatedListTemp = list.map(item => {
-      if (item.id === itemId) {
-        return {
-          ...item,
-          confirmado: item.confirmado === 1 ? 0 : 1
-        };
-      } else {
-        return item;
-      }
-    });
-    setList(updatedListTemp);
-    if (item.confirmado === 0) {
-      const confirmResult = window.confirm(`Você deseja confirmar o presente ${item.descricao}?`);
-      if (!confirmResult) {
-        setList(list);
-      }
-    }
+    const confirmResult = window.confirm(
+      `Deseja marcar o item "${item.descricao}"? Ao fazer isso não será possível desmarcar!`
+    );
 
-    const error = await updateList(itemId, item);
-    console.log(error);
+    if (!confirmResult) return;
+    item.confirmado = 1;
+
+    console.log("Item ->", item);
+
+    await updateItem(itemId, item);
+
+    console.log("Item atualizado ->", item);
+    setLoaded(false);
+  }
+
+  function handleWarning() {
+    window.alert("Não é possível desmarcar um item!");
   }
 
   return (
     <>
-      <h1>Lista de Presentes Casamento</h1>
+      <div className="mb-8 text-[#432ca8]">
+        <h1 className="text-center mb-4">Lista de presentes 👰🤵</h1>
+        <p>
+          Lista feita no intuito de organizar os presentes para o casamento!
+        </p>
+      </div>
       <div className="list-container">
         <ul>
-          {list.map(value => (
-            <li key={value.id}>
-              <input
-                type="checkbox"
-                checked={value.confirmado === 1}
-                onChange={() => handleCheckboxChange(value.id)}
-              />
-              {value.descricao}
-            </li>
+          {list.map((value) => (
+            <ItemCard
+              handleConfirmItem={handleConfirmItem}
+              handleWarning={handleWarning}
+              id={value.id}
+              selected={value.confirmado}
+              description={value.descricao}
+              key={value.id}
+            />
           ))}
         </ul>
       </div>
