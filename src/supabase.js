@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
-  "https://mgzdrtpgdxuggissgsoz.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nemRydHBnZHh1Z2dpc3Nnc296Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIwMDU2NjcsImV4cCI6MTk5NzU4MTY2N30.VZnk2DX6Bencyo1k9u6w2KvBFijn1foHGFz0eVluIJg"
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 export async function selectList() {
@@ -10,7 +10,17 @@ export async function selectList() {
   return data;
 }
 
+export async function selectListById(id) {
+  const { data } = await supabase.from("lista").select().eq("id", id);
+  return data[0];
+}
+
 export async function insertList(item) {
   const { error } = await supabase.from("lista").insert(item);
+  return error;
+}
+
+export async function updateList(id, item) {
+  const { error } = await supabase.from("lista").update(item).eq("id", id);
   return error;
 }

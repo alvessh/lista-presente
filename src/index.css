@@ -1,0 +1,49 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  /* text-align: center; */
+  font-size: 36px;
+  margin-top: 50px;
+}
+
+.list-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.category {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 18px;
+  position: relative;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.5);
+}
+
+label {
+  cursor: pointer;
+}
+
+label:hover {
+  color: #ffcd00;
+}
