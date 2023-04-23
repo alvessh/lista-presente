@@ -21,7 +21,7 @@ function Cadastro() {
     e.preventDefault();
 
     console.log(text);
-    const error = insertList({ descricao: text, confirmado: 0 });
+    const error = await insertList({ descricao: text, confirmado: 0 });
 
     setText("");
     setLoaded(false);
