@@ -20,7 +20,7 @@ function App() {
     const item = list.find((item) => item.id === itemId);
 
     const confirmResult = window.confirm(
-      `Deseja marcar o item "${item.descricao}"? Ao fazer isso não será possível desmarcar!`
+      `Você deseja confirmar o presente ${item.descricao}?. Ao selecionar o item não será possível alterar!`
     );
 
     if (!confirmResult) return;
@@ -35,7 +35,7 @@ function App() {
   }
 
   function handleWarning() {
-    window.alert("Não é possível desmarcar um item!");
+    window.alert("Não é possível desmarcar o item, pois já foi marcado por outra pessoa. Dúvidas entre em contato com os Noivos!");
   }
 
   return (
