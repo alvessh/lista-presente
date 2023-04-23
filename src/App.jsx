@@ -35,7 +35,7 @@ function App() {
   }
 
   function handleWarning() {
-    window.alert("Não é possível desmarcar um item!");
+    window.alert("Não é possível desmarcar esse item, pois já foi selecionado por alguém. Dúvidas entre em contato com os Noivos!");
   }
 
   return (
