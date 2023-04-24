@@ -10,25 +10,25 @@ export default function ItemCard({
     <li>
       {!!handleDelete ? (
         <button
-          className="bg-[#0e023a] h-16 p-4 border-4 border-[#0a0422] text-[#5d5f80] border-r-8s rounded-md w-full  text-left "
+          className="bg-card h-fit p-4 border-4 border-cardBorder text-cardText font-bold border-r-8s rounded-md w-full  text-left "
           onClick={() => handleDelete(id)}
         >
-          {description}
+          {description} <p className="text-sm text-cardSubText">🗑️ Clique para apagar</p>
         </button>
       ) : selected === 0 ? (
         <button
-          className="bg-[#0e023a] p-4 border-4 border-[#0a0422] text-[#5d5f80] border-r-8s rounded-md w-full h-16 text-left "
+          className="bg-card  p-4 border-4 border-cardBorder text-cardText font-bold border-r-8s rounded-md w-full h-fit text-left "
           onClick={() => handleConfirmItem(id)}
         >
-          <input type="checkbox" />
+          <input type="checkbox"  />
           {description}
         </button>
       ) : (
         <button
-          className="bg-[#0e023a] p-4 border-4 border-[#0a0422] text-[#5d5f80] border-r-8s rounded-md w-full h-16 text-left opacity-40"
+          className="bg-card  p-4 border-4 border-cardBorder text-cardText font-bold border-r-8s rounded-md w-full h-fit text-left opacity-40"
           onClick={() => handleWarning()}
         >
-          <input type="checkbox" checked />
+          <input type="checkbox" defaultChecked />
           {description}
         </button>
       )}
