@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-      <div className="mb-8 text-[#432ca8]">
+      <div className="mb-8 text-headerText font-bold">
         <h1 className="text-center mb-4">Lista de presentes 👰🤵</h1>
         <p>
           Lista feita no intuito de organizar os presentes para o casamento!
