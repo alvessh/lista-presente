@@ -10,6 +10,7 @@ function Rotas() {
       <Route path='/' element={<App/>} />
       <Route path="/cadastro" element={<Cadastro/>} />
     </Routes>
+    
   );
 }
 
