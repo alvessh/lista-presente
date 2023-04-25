@@ -45,22 +45,28 @@ function Cadastro() {
 
   return (
     <>
-      <h1 className="text-center mb-4 font-bold text-headerText">Cadastro de item ✏️</h1>
+      <h1 className="text-center mb-4 font-bold text-headerText">
+        Cadastro de item ✏️
+      </h1>
       <form
         onSubmit={handleSubmit}
-        className="my-8 px-4 flex flex-row items-center"
+        className="my-4 mb-16  flex flex-row items-end mr-4 gap-4"
       >
-        <input
-          type="text"
-          className="border-2 border-inputBorder bg-input text-inputText w-full h-10 rounded-md mr-4 outline-none p-2"
-          value={text}
-          onChange={handleChange}
-        />
+        <div className="text-headerText w-full ">
+          <p>Descrição do item</p>
+          <input
+            type="text"
+            className="border-2 border-inputBorder bg-input text-inputText w-full h-10 rounded-md p-2 outline-none "
+            value={text}
+            onChange={handleChange}
+          />
+        </div>
         <button
           type="submit"
-          className=" flex flex-row w-1/3  bg-button border-2 text-buttonText border-buttonBorder rounded-md p-2 "
+          className=" flex flex-row w-fit h-10 text-center items-center bg-button border-2 text-buttonText border-buttonBorder rounded-md p-2 "
         >
-          <p>➕ Adicionar</p>
+          <p>➕</p>
+          <p> Adicionar</p>
         </button>
       </form>
       <ul className="max-height">
