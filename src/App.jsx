@@ -7,17 +7,18 @@ export default function App() {
   const [indexList, setIndexList] = useState(1);
   const [pages, setPages] = useState(1);
   const [isLoaded, setLoaded] = useState(false);
+  const [text, setText] = useState('');
+
+
   useEffect(() => {
     (async () => {
       if (!isLoaded) {
         const result = await selectList();
-        setList(result);
-        console.log(result.length);
         let qtdPages = result.length / 5;
-        console.log(qtdPages);
         if (qtdPages % 1 != 0) qtdPages = Math.trunc(qtdPages) + 1;
+        
         setPages(qtdPages);
-
+        setList(result);
         setLoaded(true);
       }
     })();
@@ -48,6 +49,16 @@ export default function App() {
     );
   }
 
+
+  const filteredList = text.length > 0 ? list.filter(item => {
+    const itemStr = new String(item.descricao)
+    return itemStr.toLowerCase().includes(text.toLowerCase())
+  }) : list;
+
+
+  const qtdPages = filteredList.length/ 5;
+  const countPages = (qtdPages) % 1 != 0 ? Math.trunc(qtdPages) + 1 :  qtdPages;
+
   return (
     <main className="flex flex-col w-full justify-between gap-16">
       <header className="mb-8 text-headerText font-bold">
@@ -56,7 +67,23 @@ export default function App() {
           Lista feita no intuito de organizar os presentes para o casamento!
         </p>
       </header>
+
       <div className="list-container w-full">
+
+      <form
+        className="my-4 mb-16  flex flex-row items-end mr-4 gap-4"
+      >
+        <div className="text-headerText w-full ">
+          <p>Filtro 🔍</p>
+          <input
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            className="border-2 border-inputBorder bg-input text-inputText w-full h-10 rounded-md p-2 outline-none "
+          />
+        </div>
+      </form>
+
         <div className="flex flex-row align-middle justify-between items-center text-headerText">
           {indexList > 1 ? (
             <button
@@ -71,7 +98,7 @@ export default function App() {
             </button>
           )}
           <p>
-            {indexList} / {pages}{" "}
+            {indexList} / {countPages}{" "}
           </p>
           {indexList === pages ? (
             <button className="flex flex-row w-fit h-10 text-center items-center bg-button border-2 text-buttonText border-buttonBorder rounded-md p-2 opacity-25">
@@ -87,17 +114,17 @@ export default function App() {
           )}
         </div>
         <ul>
-          {list.map((value, index) => {
+          {filteredList.map((value, index) => {
             if (index >= indexList * 5) return;
             if (index < indexList * 5 - 5) return;
             return (
               <ItemCard
+                key={value.id + ''}
                 handleConfirmItem={handleConfirmItem}
                 handleWarning={handleWarning}
                 id={value.id}
                 selected={value.confirmado}
                 description={value.descricao}
-                key={value.id}
               />
             );
           })}
