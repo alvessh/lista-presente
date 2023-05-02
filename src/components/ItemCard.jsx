@@ -7,7 +7,7 @@ export default function ItemCard({
   handleDelete,
 }) {
   return (
-    <li>
+    <li >
       {!!handleDelete ? (
         <button
           className="bg-card h-fit p-4 border-4 border-cardBorder text-cardText font-bold border-r-8s rounded-md w-full  text-left "
